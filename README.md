@@ -30,3 +30,12 @@ dotnet ef database update
 ```
 - `database`: Enters the database operations context.
 - `update`: The action that runs the Up method of any pending migration files to sync the database schema with your C# code.
+
+## Documentation pages
+
+OpenAPI
+
+- http://localhost:5006/openapi/v1.json
+
+Swagger
+- http://localhost:5006/swagger/index.html
