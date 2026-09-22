@@ -11,4 +11,6 @@ public class Role
     public string? Descripcion {get; set;}
     
     public ICollection<RoleUser> RoleUsers {get; set;} = [];
+
+    public ICollection<PermissionRole> PermissionRoles { get; set; } = [];
 }
