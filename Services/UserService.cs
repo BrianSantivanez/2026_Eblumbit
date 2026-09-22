@@ -4,8 +4,11 @@ using EBlumbit.Repository;
 
 namespace EBlumbit.Services;
 
-public class UserService(UserRepository userRepository)
+public class UserService(UserRepository userRepository, PermissionRepository permissionRepository)
 {
+
+
+    private readonly PermissionRepository _permissionRepository = permissionRepository; 
     private readonly UserRepository _userRepository = userRepository;
 
     public async Task<IEnumerable<Users>> GetAllUsers()
