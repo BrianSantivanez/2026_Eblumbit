@@ -9,4 +9,6 @@ public class Categoria
     public string Nombre {get; set;}
     
     public string? Detalle {get; set;}
+    
+    public ICollection<Productos> Productos { get; set; } = [];
 }

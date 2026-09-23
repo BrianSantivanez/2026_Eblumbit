@@ -1,4 +1,5 @@
 using System;
+using EBlumbit.Builders;
 using EBlumbit.Dto;
 using EBlumbit.Repository.spec;
 using EBlumbit.Services.spec;
@@ -9,27 +10,35 @@ public class CategoriaService(ICategoriaRepository categoriaRepository) : ICateg
 {
 
     private readonly ICategoriaRepository _categoriaRepository = categoriaRepository;
-    public Task<IEnumerable<CategoriaResponseDto>> GetAllCategorias()
+    public async Task<IEnumerable<CategoriaResponseDto>> GetAllCategorias()
     {
-        throw new NotImplementedException();
+        var categorias = await _categoriaRepository.GetAllCategorias();
+        return categorias.Select(c => CategoriaBuilder.ToResponseDto(c));
     }
 
-    public Task<CategoriaResponseDto> GetCategoriasById(int id)
+    public async Task<CategoriaResponseDto> GetCategoriasById(int id)
     {
-        throw new NotImplementedException();
+        var categoria = await _categoriaRepository.GetCategoriaById(id);
+        return CategoriaBuilder.ToResponseDto(categoria);
     }
 
-    public Task<CategoriaResponseDto> CreateCategoria(CreateCategoriaDto createCategoriaDto)
+    public async Task<CategoriaResponseDto> CreateCategoria(CreateCategoriaDto createCategoriaDto)
     {
-        throw new NotImplementedException();
+        var categoria = await _categoriaRepository.CreateCategoria(CategoriaBuilder.ToEntity(createCategoriaDto));
+        return CategoriaBuilder.ToResponseDto(categoria);
     }
-    public Task<CategoriaResponseDto> UpdateCategoria(int id, CreateCategoriaDto createCategoriaDto)
+    public async Task<CategoriaResponseDto> UpdateCategoria(int id, CreateCategoriaDto createCategoriaDto)
     {
-        throw new NotImplementedException();
+        var categoria = await _categoriaRepository.GetCategoriaById(id);
+        if (categoria == null) return null;
+        var categoriaToUpdate = CategoriaBuilder.ToEntityUpdate(createCategoriaDto, id);
+        return CategoriaBuilder.ToResponseDto(categoriaToUpdate);
     }
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var categoria = await _categoriaRepository.GetCategoriaById(id);
+        if (categoria != null)
+            await _categoriaRepository.DeleteCategoria(id);
     }
   
 }
