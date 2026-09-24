@@ -8,6 +8,10 @@ public class Productos
 
     public string Nombre { get; set; }
 
+    public string CodigoBarra { get; set; }
+
+    public string UnidadMedida { get; set; }
+
     public string Marca { get; set; }
 
     public string Imagen { get; set; }
