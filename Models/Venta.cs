@@ -22,4 +22,7 @@ public class Venta
     public Users Users { get; set; }
 
     public Cliente cliente { get; set; }
+
+    public List<DetalleVenta> DetalleVentas { get; set; }
+
 }
