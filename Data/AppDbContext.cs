@@ -23,7 +23,17 @@ public class AppDbContext : DbContext
 
     public DbSet<Sucursales> Sucursales => Set<Sucursales>();
 
+    public DbSet<Venta> Ventas => Set<Venta>();
+
+    public DbSet<DetalleVenta> DetalleVentas => Set<DetalleVenta>();
+
     public DbSet<Inventario> Inventarios => Set<Inventario>();
+
+    public DbSet<Productos> Productos => Set<Productos>();
+
+    public DbSet<Cliente> Clientes => Set<Cliente>();
+
+    public DbSet<Almacenes> Almacenes => Set<Almacenes>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
