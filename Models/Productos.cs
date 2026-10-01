@@ -20,6 +20,12 @@ public class Productos
 
     public decimal PrecioVentaActual { get; set; }
 
+    public int StockMinimo { get; set; }
+
+    public bool Estado { get; set; }
+
+    public DateTime FechaRegistro { get; set; }
+
     public int CategoriaId {get; set;}
 
     public Categoria Categoria {get; set;}
