@@ -1,10 +1,12 @@
 using EBlumbit.Models;
 using EBlumbit.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EBlumbit.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController(UserService userService) : ControllerBase
@@ -12,6 +14,7 @@ namespace EBlumbit.Controllers
         private readonly UserService _userService = userService;
 
         [HttpGet]
+        [Authorize(Policy = "leer:users")]
         public async Task<ActionResult<ICollection<Users>>> GetAllUsers()
         {
             return Ok(_userService.GetAllUsers().Result.ToList());
@@ -24,6 +27,7 @@ namespace EBlumbit.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "crear:users")]
         public async Task<ActionResult<Users>> CreateUser([FromBody] Users user)
         {
             return Created("", _userService.CreateUser(user).Result);
